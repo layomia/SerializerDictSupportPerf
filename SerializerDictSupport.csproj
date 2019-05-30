@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--<Reference Include="System.Text.Json">
+      <HintPath>..\..\repos\corefx\artifacts\bin\ref\netcoreapp\System.Text.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>-->
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+  </ItemGroup>
+  
+</Project>

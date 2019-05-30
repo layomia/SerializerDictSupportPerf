@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>SerializerDictSupport.DictionaryPerf-20190528-120408</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700 CPU 3.60GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012096
+  [Host]     : .NET Core 3.0.0-preview6-27727-02 (CoreCLR 3.0.19.27471, CoreFX 4.700.19.27408), 64bit RyuJIT
+  Job-HGKOAM : .NET Core ? (CoreCLR 3.0.19.27171, CoreFX 4.700.19.27801), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  
+</code></pre>
+
+<table>
+<thead><tr><th>            Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>DeserializeDict</td><td>777.3 ns</td><td>19.03 ns</td><td>16.87 ns</td><td>774.3 ns</td><td>0.0992</td><td>-</td><td>-</td><td>416 B</td>
+</tr><tr><td>DeserializeIDict</td><td>797.7 ns</td><td>16.02 ns</td><td>33.80 ns</td><td>785.1 ns</td><td>0.0992</td><td>-</td><td>-</td><td>416 B</td>
+</tr><tr><td>DeserializeIReadOnlyDict</td><td>807.2 ns</td><td>12.30 ns</td><td>11.51 ns</td><td>804.7 ns</td><td>0.0992</td><td>-</td><td>-</td><td>416 B</td>
+</tr><tr><td>SerializeDict</td><td>658.1 ns</td><td>13.12 ns</td><td>18.82 ns</td><td>653.4 ns</td><td>0.0782</td><td>-</td><td>-</td><td>328 B</td>
+</tr><tr><td>SerializeIDict</td><td>670.6 ns</td><td>12.83 ns</td><td>14.77 ns</td><td>668.1 ns</td><td>0.0782</td><td>-</td><td>-</td><td>328 B</td>
+</tr><tr><td>SerializeIReadOnlyDict</td><td>655.3 ns</td><td>12.63 ns</td><td>11.81 ns</td><td>655.8 ns</td><td>0.0772</td><td>-</td><td>-</td><td>328 B</td>
+</tr></tbody></table>
+</body>
+</html>
