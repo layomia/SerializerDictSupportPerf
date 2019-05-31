@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>SerializerDictSupport.ImmutableDictionaryPerf-20190531-085247</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700 CPU 3.60GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012121
+  [Host]     : .NET Core 3.0.0-preview6-27729-05 (CoreCLR 4.700.19.27901, CoreFX 4.700.19.27903), 64bit RyuJIT
+  Job-HWCYFJ : .NET Core ? (CoreCLR 4.600.19.27871, CoreFX 4.700.19.28001), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  
+</code></pre>
+
+<table>
+<thead><tr><th>                         Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>DeserializeImmutableDict</td><td>1.947 us</td><td>0.0700 us</td><td>0.1974 us</td><td>1.876 us</td><td>0.6332</td><td>-</td><td>-</td><td>2649 B</td>
+</tr><tr><td>DeserializeIImmutableDict</td><td>1.949 us</td><td>0.0404 us</td><td>0.1147 us</td><td>1.895 us</td><td>0.6332</td><td>-</td><td>-</td><td>2649 B</td>
+</tr><tr><td>DeserializeImmutableSortedDict</td><td>2.532 us</td><td>0.0504 us</td><td>0.1283 us</td><td>2.527 us</td><td>0.7591</td><td>-</td><td>-</td><td>3177 B</td>
+</tr><tr><td>SerializeImmutableDict_ToBytes</td><td>1.606 us</td><td>0.0081 us</td><td>0.0071 us</td><td>1.606 us</td><td>0.1793</td><td>-</td><td>-</td><td>752 B</td>
+</tr><tr><td>SerializeIImmutableDict_ToBytes</td><td>1.685 us</td><td>0.0338 us</td><td>0.0473 us</td><td>1.677 us</td><td>0.1793</td><td>-</td><td>-</td><td>752 B</td>
+</tr><tr><td>SerializeImmutableSortedDict_ToBytes</td><td>1.501 us</td><td>0.0299 us</td><td>0.0265 us</td><td>1.507 us</td><td>0.1564</td><td>-</td><td>-</td><td>656 B</td>
+</tr><tr><td>SerializeImmutableDict_ToString</td><td>1.721 us</td><td>0.0271 us</td><td>0.0290 us</td><td>1.711 us</td><td>0.1869</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>SerializeIImmutableDict_ToString</td><td>1.709 us</td><td>0.0234 us</td><td>0.0182 us</td><td>1.707 us</td><td>0.1869</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>SerializeImmutableSortedDict_ToString</td><td>1.357 us</td><td>0.0112 us</td><td>0.0094 us</td><td>1.358 us</td><td>0.1640</td><td>-</td><td>-</td><td>688 B</td>
+</tr></tbody></table>
+</body>
+</html>
